@@ -5,5 +5,6 @@ import react from "@vitejs/plugin-react";
 // No dev proxy on purpose: we never want to accidentally hit localhost.
 export default defineConfig({
   plugins: [react()],
-  server: { port: 5173 },
+  // Honor an injected PORT (preview harness / hosting) and fall back to 5173.
+  server: { port: Number(process.env.PORT) || 5173 },
 });

@@ -1,0 +1,111 @@
+/**
+ * Blossom-Vermillion — design tokens as CSS custom properties.
+ *
+ * This is the single source of truth for color. Tailwind (see tailwind.config.ts)
+ * maps its color names onto these variables, so every `bg-brand`, `text-primary`,
+ * etc. resolves here. Light is the default; adding `class="dark"` (or
+ * `data-theme="dark"`) on <html> flips to the dark variant.
+ *
+ * Ported 1:1 from the Flutter AppColors (light + dark).
+ */
+
+:root,
+:root[data-theme='light'],
+.light {
+  /* Brand — magenta (the single accent; no gold) */
+  --bv-brand: #e3106d;
+  --bv-brand-deep: #c20e5f;
+  --bv-brand-bright: #f0387f;
+  --bv-on-brand: #ffffff;
+
+  /* Gradient stops (used by the .bg-brand-gradient utility) */
+  --bv-brand-grad-from: #f0387f;
+  --bv-brand-grad-to: #c20e5f;
+
+  /* Surfaces */
+  --bv-background: #faf3f6;
+  --bv-surface: #ffffff;
+  --bv-surface-high: #f3eaee;
+  --bv-surface-brand: #e3106d;
+
+  /* Lines */
+  --bv-border: rgba(0, 0, 0, 0.08);
+
+  /* Text */
+  --bv-text-primary: #1e1418;
+  --bv-text-secondary: #645157;
+  --bv-text-tertiary: #9a8b91;
+
+  /* Status */
+  --bv-success: #3e9e5c;
+  --bv-warning: #c98a1e;
+  --bv-danger: #c5392f;
+  --bv-info: #35699e;
+
+  /* Scrim */
+  --bv-overlay: rgba(0, 0, 0, 0.35);
+
+  /* Elevation (soft, low) */
+  --bv-shadow-card: 0 12px 24px rgba(0, 0, 0, 0.1);
+  --bv-shadow-brand-glow: 0 12px 28px rgba(227, 16, 109, 0.38);
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'],
+.dark {
+  /* Brand — magenta reads slightly brighter on black */
+  --bv-brand: #f0387f;
+  --bv-brand-deep: #c20e5f;
+  --bv-brand-bright: #f0387f;
+  --bv-on-brand: #ffffff;
+
+  --bv-brand-grad-from: #f0387f;
+  --bv-brand-grad-to: #c20e5f;
+
+  /* Surfaces — echo the original crypto-wallet screenshot (near-black) */
+  --bv-background: #050505;
+  --bv-surface: #111111;
+  --bv-surface-high: #1c1c1c;
+  --bv-surface-brand: #e3106d;
+
+  --bv-border: rgba(255, 255, 255, 0.12);
+
+  --bv-text-primary: #f7f5f6;
+  --bv-text-secondary: #aea6a9;
+  --bv-text-tertiary: #6e6669;
+
+  --bv-success: #70af92;
+  --bv-warning: #e0b25a;
+  --bv-danger: #e05043;
+  --bv-info: #6fa3d1;
+
+  --bv-overlay: rgba(0, 0, 0, 0.8);
+
+  --bv-shadow-card: 0 12px 24px rgba(0, 0, 0, 0.55);
+  --bv-shadow-brand-glow: 0 12px 28px rgba(240, 56, 127, 0.4);
+
+  color-scheme: dark;
+}
+
+/* Base document defaults so the palette shows without extra wiring. */
+html {
+  background-color: var(--bv-background);
+  color: var(--bv-text-primary);
+}
+
+/* One convenience utility Tailwind can't express as a single color token:
+   the magenta hero gradient (wallet-value / reward cards). */
+.bg-brand-gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--bv-brand-grad-from) 0%,
+    var(--bv-brand-grad-to) 100%
+  );
+}
+
+/* Tabular figures for aligned currency / percentage columns. */
+.tabular-nums-bv {
+  font-feature-settings: 'tnum' 1;
+  font-variant-numeric: tabular-nums;
+}

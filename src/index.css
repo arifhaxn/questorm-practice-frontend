@@ -1,18 +1,27 @@
+/* Blossom-Vermillion — app stylesheet entry (imported once in main.tsx). */
+
+/* 1) Design tokens (CSS variables for light + dark). Must precede Tailwind so
+      the variables exist when utilities resolve them. */
+@import "./theme/tokens.css";
+
+/* 2) Inter — the design system's typeface. (All @imports must precede other
+      statements, so this sits above the Tailwind layers.) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* 3) Tailwind layers. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  color-scheme: light dark;
-}
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
 
-html,
-body,
-#root {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  body {
+    margin: 0;
+    @apply bg-background text-primary font-sans antialiased;
+  }
 }
